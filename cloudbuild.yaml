@@ -36,7 +36,7 @@ substitutions:
 
 images:
   - '${_IMAGE}'
-  -
+
 # Define Cloud Run requirements
 timeout: 900s
 options:
