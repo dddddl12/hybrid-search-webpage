@@ -34,6 +34,9 @@ steps:
 substitutions:
   _IMAGE: '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}:latest'
 
+images:
+  - '${_IMAGE}'
+  -
 # Define Cloud Run requirements
 timeout: 900s
 options:
