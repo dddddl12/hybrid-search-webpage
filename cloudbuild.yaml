@@ -32,7 +32,7 @@ steps:
       ]
 
 substitutions:
-  _IMAGE: '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}:latest'
+  _IMAGE: '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}:$COMMIT_SHA'
 
 images:
   - '${_IMAGE}'
