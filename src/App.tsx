@@ -19,6 +19,7 @@ interface FetchResponse {
             title: string
             author: string
             publication_date: string
+            category: typeof categories[number]
         }
     }[]
 }
@@ -213,16 +214,24 @@ function SearchApp() {
                 {fetchResponse.contents.map((result, index) => (
                     <div key={index} className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
                         <h3 className="text-xl font-semibold">{result.title}</h3>
-                        <p className="mt-2 text-gray-600">{result.content}</p>
-                        <div className="mt-2 text-sm text-gray-500">
-                            {result.metadata.title} | {result.metadata.author} · {result.metadata.publication_date}
+                        <p className="mt-2 text-gray-600 whitespace-pre-wrap">{result.content}</p>
+                        <div className="flex gap-2 mt-4">
+                            <div className="text-[0.6rem] rounded-lg bg-blue-300 text-yellow-200 px-2 py-1">
+                                {result.metadata.category}
+                            </div>
+                            <div className="text-sm text-gray-500">
+                                <span className="font-bold">Magazine:</span> {result.metadata.title}
+                                &nbsp;| <span className="font-bold">Author:</span> {result.metadata.author}
+                                &nbsp;| <span
+                                className="font-bold">Published:</span> {result.metadata.publication_date}
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
 
             <div className="mt-6 flex justify-center gap-4">
-                <button
+            <button
                     onClick={() => handleNavigation("prev")}
                     disabled={offset === 0 || loading}
                     className="px-4 py-2 border rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:hover:bg-white"
