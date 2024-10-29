@@ -170,7 +170,11 @@ function SearchApp() {
                         </button>
                     </div>
                 </div>
-                <div className="grid grid-cols-4 gap-2">
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(8rem, 1fr))",
+                    gap: "0.5rem"
+                }}>
                     {categories.map(category => (
                         <label key={category} className="flex items-center space-x-2">
                             <input
@@ -231,7 +235,7 @@ function SearchApp() {
             </div>
 
             <div className="mt-6 flex justify-center gap-4">
-            <button
+                <button
                     onClick={() => handleNavigation("prev")}
                     disabled={offset === 0 || loading}
                     className="px-4 py-2 border rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:hover:bg-white"
