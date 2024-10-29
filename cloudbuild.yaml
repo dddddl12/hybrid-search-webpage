@@ -13,11 +13,11 @@ steps:
 
   # Step 3: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}', '.']
+    args: ['build', '-t', '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}', '.']
 
   # Step 4: Push Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}']
+    args: ['push', '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}']
 
   # Step 5: Deploy to Google Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -25,14 +25,14 @@ steps:
     args:
       [
         'run', 'deploy', '${_SERVICE_NAME}',
-        '--image', '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}',
+        '--image', '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}',
         '--platform', '${_PLATFORM}',
         '--region', '${_DEPLOY_REGION}',
         '--allow-unauthenticated'
       ]
 
 images:
-  - '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}'
+  - '${_AR_HOSTNAME}/$PROJECT_ID/${_SERVICE_NAME}/${_SERVICE_NAME}'
 
 # Define Cloud Run requirements
 timeout: 900s
